@@ -1,0 +1,61 @@
+  <script src="../js/list.js"></script>
+
+  <script type="text/javascript">
+
+
+  $( document ).ready(function() {
+
+    $('.ui.dropdown').dropdown();
+    $('.ui.checkbox').checkbox();
+  }
+
+  </script>
+
+  <div style="width: 100%;" class="ui raised very padded text container segment">
+    <h3 class="ui dividing header">Clientes</h3>
+    <div id="users">
+      <div class="one field">
+        <div class="field">
+          <input ng-model="filtro"  class="search form-control border-input" style="width:100%;float:left;" placeholder="Filtro por Nome" />
+        </div>
+      </div>
+
+      <div ng-repeat="cliente in clientes" ng-class-odd="'black'" ng-class-even="'white'">
+        {{cliente.nome}}
+      </div>
+
+      <form name="listaClienteForm">
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="center aligned">Nome</th>
+              <th class="center aligned"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr title="Editar" ng-repeat="cliente in vm.clientes  | filter : filtro track by $index">
+              <td ui-sref="cadastroCliente({id:cliente._id})" class="center aligned">{{cliente.nome}}</td>
+              <td  class="center aligned">
+                <button ng-click="vm.delete(item._id)" title="Remover" class="btn btn-danger btn-fill">
+                  <i class="ti-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot class="full-width">
+            <tr>
+              <th></th>
+              <th colspan="4">
+                <div ui-sref="cadastroCliente" class="btn btn-info btn-fill btn-wd">
+                  <i class="add icon"></i> Adicionar
+                </div>
+                
+              </th>
+            </tr>
+          </tfoot>
+        </table>
+
+      </form>
+    </div>
+</div>

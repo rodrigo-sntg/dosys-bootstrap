@@ -1,0 +1,148 @@
+<script type="text/javascript">
+$('.test.checkbox').checkbox();
+</script>
+        
+        <form name="clienteForm" class="ui form" prependId="false">
+
+
+
+          <div class="row">               
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Dados Pessoais</h4>
+                            </div>
+                            <div class="content">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="nome">Nome</label>
+                                                <input type="text" id="nome" class="form-control border-input" ng-required="true" ng-model="vm.cliente.nome" name="nome" placeholder="Nome"/>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Data Nascimento</label>
+                                                <div class="ui calendar" >
+                                                <input style="width:100%" class="form-control border-input" ng-required="true" type="date"  ng-model="vm.cliente.dataNascimento" 
+                                                    name="dataNascimento" class="" id="dataNascimento" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>CPF</label>
+                                                <input type="text" ng-required="true" class="form-control border-input" ng-model="vm.cliente.cpf" class="cpf" name="cpf" equired="true" value="" placeholder="xxx.xxx.xxx-xx" type="text"/>
+
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Telefone</label>
+                                                <input type="text" class="rg form-control border-input" ng-required="true" ng-model="vm.cliente.telefone"  name="telefone" value="" type="text"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>RG</label>
+                                                <input type="text" class="rg form-control border-input" ng-required="true" ng-model="vm.cliente.rg"  name="rg" value="" placeholder="x.xxx.xxx-x" type="text"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Status</label>
+                                                <input type="checkbox" name="status" class="form-control border-input" ng-model="vm.cliente.status" ng-value="{{vm.cliente.status}}">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <label>Endereço</label>
+                                                <input type="text" ng-model="vm.cliente.endereco.rua" ng-required="true" name="rua" value="" placeholder="Endereço" type="text" class="form-control border-input" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                            <label>Complemento</label>
+                                            <input type="text" class="form-control border-input" ng-model="vm.cliente.endereco.complemento" name="complemento" value="" placeholder="" type="text"/>
+                                          </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Cidade</label>
+                                                <input type="text" ng-model="vm.cliente.endereco.cidade" class="form-control border-input" 
+                                                  ng-required="true" name="cidade" value="" placeholder="cidade" type="text"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Estado</label>
+                                                <select class="form-control border-input" ng-model="vm.cliente.endereco.uf" 
+                                                  name="uf" ng-required="true" class="ui fluid dropdown">
+                                                  <option value="ac" >Acre</option>
+                                                  <option value="al" >Alagoas</option>
+                                                  <option value="am" >Amazonas</option>
+                                                  <option value="ap" >Amapá</option>
+                                                  <option value="ba" >Bahia</option>
+                                                  <option value="ce" >Ceará</option>
+                                                  <option value="df" >Distrito Federal</option>
+                                                  <option value="es" >Espírito Santo</option>
+                                                  <option value="go" >Goiás</option>
+                                                  <option value="ma" >Maranhão</option>
+                                                  <option value="mt" >Mato Grosso</option>
+                                                  <option value="ms" >Mato Grosso do Sul</option>
+                                                  <option value="mg" >Minas Gerais</option>
+                                                  <option value="pa" >Pará</option>
+                                                  <option value="pb" >Paraíba</option>
+                                                  <option value="pr" >Paraná</option>
+                                                  <option value="pe" >Pernambuco</option>
+                                                  <option value="pi" >Piauí</option>
+                                                  <option value="rj" >Rio de Janeiro</option>
+                                                  <option value="rn" >Rio Grande do Norte</option>
+                                                  <option value="ro" >Rondônia</option>
+                                                  <option value="rs" >Rio Grande do Sul</option>
+                                                  <option value="rr" >Roraima</option>
+                                                  <option value="sc" >Santa Catarina</option>
+                                                  <option value="se" >Sergipe</option>
+                                                  <option value="sp" >São Paulo</option>
+                                                  <option value="to" >Tocantins</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center">
+                                      <input type="button" ng-disabled="clienteForm.$invalid"  style="float:right"
+                                        ng-click="!vm.cliente._id ? vm.insert() : vm.update()" class="btn btn-fill btn-success" id="btsalvar" value="Salvar" />
+                    
+                                      <input type="button" ng-if="vm.cliente._id" ng-click="vm.delete()" class="btn btn-fill btn-danger" value="Inativar" id="  btexcluir" />
+
+                                      <a ui-sref="listaCliente" class="btn btn-fill btn-primary">Ir para lista</a>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+
+      </form>
+        

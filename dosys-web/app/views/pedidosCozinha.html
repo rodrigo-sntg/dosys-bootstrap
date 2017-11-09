@@ -1,0 +1,195 @@
+<script type="text/javascript">
+$('.test.checkbox').checkbox();
+
+
+</script>
+        
+<style type="text/css">
+.modal-backdrop{
+  z-index: -1 !important;
+}
+</style>
+
+
+<div class="row" style="float:left;width:100%">               
+    <div class="col-lg-4 col-md-4">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Rascunho</h4>
+                <button ui-sref="cadastroOrdem" class="btn btn-primary" style="float:right">
+                  <i class="ti-plus"></i> Criar
+                </button>
+                <hr/>
+            </div>
+            <div class="content">
+                <form>
+                    <div ng-repeat="ordem in vm.ordensRascunho" class="container-fluid">
+
+                      <div class="as" >
+                        <div class="divLixo">
+                          <div ng-click="vm.deletePorId(ordem._id)" class="lixo btn btn-xs btn-danger btn-icon" >
+                            <i class="ti-trash"></i>
+                          </div>
+                        </div>
+                          <div ui-sref="cadastroOrdem({id:ordem._id})" style="background-color: lightyellow;" class="card lv-btn">
+                            <div class="header">
+                                <h4 class="title">Ordem {{ordem.numero}}</h4>
+                                <hr>
+                            </div>
+                            <div class="content">
+                              <div >
+                                
+                                <table style="width:100%">
+                                  <tr>
+                                    <th>Item</th>
+                                    <th>Qtd</th>
+                                    <th>Preço</th>
+                                  </tr>
+                                  
+                                  <tr ng-repeat="item in ordem.itensCompra  | filter : filtro track by $index">
+                                    <td>{{item.itemEstoque.nome}}</td>
+                                    <td>{{item.quantidadeSolicitada}} un</td>
+                                    <td>R$ {{item.precoTotal}}</td>
+                                  </tr>
+                                  <tfoot class="full-width">
+                                      <tr>
+                                          <th colspan="2">Total
+                                          </th>
+                                          <th colspan="">R$ {{ordem.precoTotal}}
+                                          </th>
+                                      </tr>
+                                  </tfoot>
+                                </table>
+                                
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4">
+        <div class="card" >
+            <div class="header">
+                <h4 class="title">Em Andamento</h4>
+                <hr/>
+            </div>
+            <div class="content">
+              <form>
+                    <div ng-repeat="ordem in vm.ordensEnviadas" class="container-fluid">
+
+                      <div class="as" >
+                        <div class="divLixo">
+                          <div ng-click="vm.deletePorId(ordem._id)" class="lixo btn btn-xs btn-danger btn-icon" >
+                            <i class="ti-trash"></i>
+                          </div>
+                        </div>
+                          <div ui-sref="cadastroOrdem({id:ordem._id})" style="background-color: lightblue;" class="card lv-btn">
+                            <div class="header">
+                                <h4 class="title">Ordem {{ordem.numero}}</h4>
+                                <hr>
+                            </div>
+                            <div class="content">
+                              <div >
+                                
+                                <table style="width:100%">
+                                  <tr>
+                                    <th>Item</th>
+                                    <th>Qtd</th>
+                                    <th>Preço</th>
+                                  </tr>
+                                  
+                                  <tr ng-repeat="item in ordem.itensCompra  | filter : filtro track by $index">
+                                    <td>{{item.itemEstoque.nome}}</td>
+                                    <td>{{item.quantidadeSolicitada}} un</td>
+                                    <td>R$ {{item.precoTotal}}</td>
+                                  </tr>
+                                  <tfoot class="full-width">
+                                      <tr>
+                                          <th colspan="2">Total
+                                          </th>
+                                          <th colspan="">R$ {{ordem.precoTotal}}
+                                          </th>
+                                      </tr>
+                                  </tfoot>
+                                </table>
+                                
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Concluídas</h4>
+                  <button type="submit" class="btn btn-primary" style="float:right">
+                    <i class="ti-plus"></i> Criar
+                  </button>
+                <hr/>
+            </div>
+            <div class="content">
+                <form>
+                    <div ng-repeat="ordem in vm.ordensRecebidas" class="container-fluid">
+
+                      <div class="as" >
+                        <div class="divLixo">
+                          <div ng-click="vm.deletePorId(ordem._id)" class="lixo btn btn-xs btn-danger btn-icon" >
+                            <i class="ti-trash"></i>
+                          </div>
+                        </div>
+                          <div ui-sref="cadastroOrdem({id:ordem._id})" style="background-color: lightgreen;" class="card lv-btn">
+                            <div class="header">
+                                <h4 class="title">Ordem {{ordem.numero}}</h4>
+                                <hr>
+                            </div>
+                            <div class="content">
+                              <div >
+                                
+                                <table style="width:100%">
+                                  <tr>
+                                    <th>Item</th>
+                                    <th>Qtd</th>
+                                    <th>Preço</th>
+                                  </tr>
+                                  
+                                  <tr ng-repeat="item in ordem.itensCompra  | filter : filtro track by $index">
+                                    <td>{{item.itemEstoque.nome}}</td>
+                                    <td>{{item.quantidadeSolicitada}} un</td>
+                                    <td>R$ {{item.precoTotal}}</td>
+                                  </tr>
+                                  <tfoot class="full-width">
+                                      <tr>
+                                          <th colspan="2">Total
+                                          </th>
+                                          <th colspan="">R$ {{ordem.precoTotal}}
+                                          </th>
+                                      </tr>
+                                  </tfoot>
+                                </table>
+                                
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                    </div>
+                </form>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
+

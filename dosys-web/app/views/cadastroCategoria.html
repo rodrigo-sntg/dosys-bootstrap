@@ -1,0 +1,66 @@
+<script type="text/javascript">
+$('.test.checkbox').checkbox();
+</script>
+<style type="text/css">
+fieldset{
+    background: #FCFCFC;
+    padding: 16px;
+    border: 1px solid #D5D5D5;
+}
+.addfields{
+    margin: 10px 0;
+}
+
+#choicesDisplay {
+    padding: 10px;
+    background: rgb(227, 250, 227);
+    border: 1px solid rgb(171, 239, 171);
+    color: rgb(9, 56, 9);
+}
+.remove{
+    background: #C76868;
+    color: #FFF;
+    font-weight: bold;
+    font-size: 21px;
+    border: 0;
+    cursor: pointer;
+    display: inline-block;
+    padding: 4px 9px;
+    vertical-align: top;
+    line-height: 100%;   
+}
+input[type="text"],
+select{
+    padding:5px;
+}
+</style>
+        
+        <form name="unidadeMedidaForm" class="ui form" prependId="false">
+        <h4 class="ui dividing header">Categoria</h4>
+      
+        <div class="fields">
+            <div class="eight wide field">
+              <input type="text" ng-required="true" ng-model="vm.categoria.nome" name="nome" placeholder="Nome Categoria"/>
+            </div>
+        </div>
+
+
+           <fieldset  data-ng-repeat="sub in vm.subCategorias">
+              <input type="text" ng-model="sub.nome" name="" placeholder="Nome SubCategoria">
+              <button class="remove"  ng-click="vm.removeSubCategoria()">-</button>
+           </fieldset>
+        <div class="fields">
+           <button class="addfields" ng-click="vm.addNewSubCategoria()">Adicionar Subcategoria</button>
+        </div>
+
+
+  
+
+          <input type="button" ng-disabled="unidadeMedidaForm.$invalid" ng-click="!vm.categoria._id ? vm.insert() : vm.update()" 
+            class="positive ui button" id="btsalvar" value="Salvar" />
+          
+          <input type="button" ng-if="vm.categoria._id" ng-click="vm.delete()" class="negative  ui button" value="Inativar" id="  btexcluir" />
+
+          <a ui-sref="painelParametrosCategorias" class="submit ui button">Ir para lista</a>
+          
+      </form>

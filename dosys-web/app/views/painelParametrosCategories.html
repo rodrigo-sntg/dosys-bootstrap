@@ -1,0 +1,106 @@
+  <script type="text/javascript">
+
+
+  $( document ).ready(function() {
+
+    $('.ui.dropdown').dropdown();
+    $('.ui.checkbox').checkbox();
+
+
+    $('.ui .item').on('click', function() {
+       $('.ui .item').removeClass('active');
+       $(this).addClass('active');
+    }); 
+  }
+
+  </script>
+  <style type="text/css">
+  .click:hover{
+    background-color: rgba(13, 187, 3, 0.15); !important
+    cursor: pointer; cursor: hand; 
+  }
+
+  li.novo {
+        list-style-type: none;
+  }
+
+
+  </style>
+
+  <div style="width: 100%;" class="ui raised very padded text container segment">
+      <h3 class="ui dividing header">Parametrizações</h3>
+      <div id="users">
+      <form name="parametrosForm">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a ui-sref="painelParametrosUnidades">
+                                <i class="ti-ruler"></i>
+                                <p>Unidades de medida</p>
+                            </a>
+                        </li>
+                        <li class="dropdown active" active>
+                              <a ui-sref="painelParametrosCategories">
+                                <i class="ti-tag"></i>
+                                <p>Categorias</p>
+                            </a>
+                        </li>
+                          <li>
+                            <a ui-sref="painelParametrosPacotes">
+                              <i class="ti-archive"></i>
+                              <p>Pacotes</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="">
+          <div id="users">
+              <div class="one field">
+                <div class="field full width">
+                  <input ng-model="filtro"  class="search form-control border-input" style="width:100%;float:left;" placeholder="Filtro por Nome" />
+                </div>
+              </div>
+
+              <form name="listaUnidadesForm">
+                <table class=" table table-striped">
+                  <thead>
+                    <tr>
+                      <th class="sort">Categoria</th>
+                      <th>Sub Categorias</th>
+                      <th class="center aligned">Remover</th>
+                    </tr>
+                  </thead>
+                  <tbody>              
+                      <tr title="Editar Categoria" ng-repeat="categoria in vm.lista  | filter : filtro track by $index" class="">
+                        <td ui-sref="cadastroCategory({id:categoria._id})" class="name">{{categoria._id}}</td>
+                        <td>
+                            <ul>
+                              <li title="Nova" style="color:darkblue;" ui-sref="cadastroCategory" class="click novo"><i style="padding-left: 1.2em;text-indent: -4.2em;color:darkblue;"  class="add icon"></i> Add</li>
+                              <div ng-repeat="sub in categoria.subCategorias">
+                                <li title="Editar Sub Categoria" ui-sref="cadastroCategory({id:sub._id})" class="click">{{sub._id}} </li>
+                              </div>
+                            </ul>
+                        </td>
+
+                        <td ui-sref="cadastroCategory({id:categoria._id})" class="center aligned">
+                          <button title="Remover" style="z-index:99" ng-click="vm.delete(categoria._id)" class="btn btn-danger btn-fill">
+                            <i class="ti-trash"></i>
+                          </button>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+                <div ui-sref="cadastroCategory" class="btn btn-info btn-fill btn-wd">
+                  <i class="add icon"></i> Adicionar
+                </div>
+              </form>
+            </div>
+        </div>
+            
+      </form>
+    </div>
+  </div>

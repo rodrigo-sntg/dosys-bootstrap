@@ -1,0 +1,182 @@
+<script type="text/javascript">
+$('.test.checkbox').checkbox();
+</script>
+        
+        <form name="fornecedorForm" class="ui form" prependId="false">
+
+
+
+          <div class="row">               
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Fornecedor</h4>
+                            </div>
+                            <div class="content">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Razão Social</label>
+                                                <input type="text" class="form-control border-input"class="form-control border-input" ng-required="true" ng-model="vm.fornecedor.razaoSocial" name="nome" placeholder="Razão social"/>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Nome Fantasia</label>
+                                                <input type="text" class="form-control border-input" ng-required="true" ng-model="vm.fornecedor.nomeFantasia" name="nome" placeholder="Nome Fantasia"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="email" class="form-control border-input" ng-required="true" ng-model="vm.fornecedor.email" name="email" placeholder="email@domain.com"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>CNPJ</label>
+                                                <input type="text" class="form-control border-input" ng-required="true" 
+                                                  ng-model="vm.fornecedor.cnpj" name="cnpj" placeholder="XX.XXX.XXX/YYYY-ZZ"/>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Telefone</label>
+                                                <input type="text" class="telefone form-control border-input" ng-required="true" ng-model="vm.fornecedor.telefone" name="telefone" value="" placeholder="(xx)00000-0000"  type="text"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="form-group">
+                                        <div class="col-md-6">
+                                          <label>Vendedor</label>
+                                          <input type="text" class="form-control border-input" ng-required="true" ng-model="vm.fornecedor.vendedor" name="nome" placeholder="Nome"/>
+                                        </div>
+                                        <div class="col-md-6">
+                                          <label>Prazo de pagamento (dias)</label>
+                                          <input type="number" class="form-control border-input" ng-required="true" ng-model="vm.fornecedor.prazoPagamento"  name="rg" value="" placeholder="" type="text"/>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="row">
+
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Rate</label>
+                                                <input-stars max="5" class="form-control " allow-half ng-model="vm.fornecedor.rate"></input-stars>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Status</label>
+                                                <input type="checkbox" name="status" ng-model="vm.fornecedor.status" ng-value="{{vm.fornecedor.status}}">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    
+
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="form-group">
+                                                <label>Endereço</label>
+                                                <input type="text" ng-model="vm.fornecedor.endereco.rua" ng-required="true" name="rua" value="" placeholder="Endereço" type="text" class="form-control border-input" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                            <label>Complemento</label>
+                                            <input type="text" class="form-control border-input" ng-model="vm.fornecedor.endereco.complemento" name="complemento" value="" placeholder="" type="text"/>
+                                          </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Cidade</label>
+                                                <input type="text" ng-model="vm.fornecedor.endereco.cidade" class="form-control border-input" 
+                                                  ng-required="true" name="cidade" value="" placeholder="cidade" type="text"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Estado</label>
+                                                <select class="form-control border-input" ng-model="vm.fornecedor.endereco.uf" 
+                                                  name="uf" ng-required="true" class="ui fluid dropdown">
+                                                  <option value="ac" >Acre</option>
+                                                  <option value="al" >Alagoas</option>
+                                                  <option value="am" >Amazonas</option>
+                                                  <option value="ap" >Amapá</option>
+                                                  <option value="ba" >Bahia</option>
+                                                  <option value="ce" >Ceará</option>
+                                                  <option value="df" >Distrito Federal</option>
+                                                  <option value="es" >Espírito Santo</option>
+                                                  <option value="go" >Goiás</option>
+                                                  <option value="ma" >Maranhão</option>
+                                                  <option value="mt" >Mato Grosso</option>
+                                                  <option value="ms" >Mato Grosso do Sul</option>
+                                                  <option value="mg" >Minas Gerais</option>
+                                                  <option value="pa" >Pará</option>
+                                                  <option value="pb" >Paraíba</option>
+                                                  <option value="pr" >Paraná</option>
+                                                  <option value="pe" >Pernambuco</option>
+                                                  <option value="pi" >Piauí</option>
+                                                  <option value="rj" >Rio de Janeiro</option>
+                                                  <option value="rn" >Rio Grande do Norte</option>
+                                                  <option value="ro" >Rondônia</option>
+                                                  <option value="rs" >Rio Grande do Sul</option>
+                                                  <option value="rr" >Roraima</option>
+                                                  <option value="sc" >Santa Catarina</option>
+                                                  <option value="se" >Sergipe</option>
+                                                  <option value="sp" >São Paulo</option>
+                                                  <option value="to" >Tocantins</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>CEP</label>
+                                                <input type="text" ng-model="vm.fornecedor.endereco.cep" class="form-control border-input" 
+                                                  ng-required="true" name="cep" value="" placeholder="cep" type="text"/>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Observações</label>
+                                                <textarea ng-model="vm.fornecedor.observacoes" rows="5" class="form-control border-input" 
+                                                placeholder="Observações sobre o fornecedor" value=""></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+
+                                        <input type="button" ng-disabled="fornecedorForm.$invalid" style="float:right"
+                                        ng-click="!vm.fornecedor._id ? vm.insert() : vm.update()" class="btn btn-fill btn-success" id="btsalvar" value="Salvar" />
+                    
+                                        <input type="button" ng-if="vm.fornecedor._id" ng-click="vm.delete()" class="btn btn-fill btn-danger" value="Inativar" id="  btexcluir" />
+
+                                        <a ui-sref="listaFornecedores" class="btn btn-fill btn-primary">Ir para lista</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+      </form>

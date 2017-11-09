@@ -1,0 +1,90 @@
+	<script type="text/javascript">
+
+
+	$( document ).ready(function() {
+
+		$('.ui.dropdown').dropdown();
+		$('.ui.checkbox').checkbox();
+
+
+		$('.ui .item').on('click', function() {
+		   $('.ui .item').removeClass('active');
+		   $(this).addClass('active');
+		}); 
+	}
+
+	</script>
+
+	<div style="width: 100%;" class="ui raised very padded text container segment">
+	    <h3 class="ui dividing header">Parametrizações</h3>
+	    <div id="users">
+			<form name="parametrosForm">
+			
+
+
+		<nav class="navbar navbar-default">
+            <div class="container-fluid">
+				<div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a ui-sref="painelParametrosUnidades" data-toggle="selected" selected>
+                                <i class="ti-ruler"></i>
+								<p>Unidades de medida</p>
+                            </a>
+                        </li>
+                        <li class="">
+                              <a ui-sref="painelParametrosCategories">
+                                <i class="ti-tag"></i>
+								<p>Categorias</p>
+                            </a>
+                        </li>
+						<li>
+                            <a ui-sref="painelParametrosPacotes">
+								<i class="ti-archive"></i>
+								<p>Pacotes</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+				<div class="">
+				    <div id="users">
+				      <div class="one field">
+				        <div class="field">
+				          <input ng-model="filtro"  class="search form-control border-input" style="width:100%;float:left;" placeholder="Filtro por Nome" />
+				        </div>
+				      </div>
+
+				      <div ng-repeat="unidade in unidadeMedidas" ng-class-odd="'black'" ng-class-even="'white'">
+				        {{unidade.unidade}}
+				      </div>
+
+				      <form name="listaUnidadesForm">
+				        <table class="table table-striped">
+				          <thead>
+				            <tr>
+				              <th class="center aligned sort">Nome</th>
+				              <th class="center aligned">Grandeza</th>
+				            </tr>
+				          </thead>
+				          <tbody>              
+				              <tr ng-repeat="unidade in vm.unidadeMedidas  | filter : filtro track by $index" class="positive">
+				                    <td ui-sref="cadastroUnidadeMedida({id:unidade._id})" class="name center aligned">{{unidade.unidade}}</td>
+				                    <td ui-sref="cadastroUnidadeMedida({id:unidade._id})" class="name center aligned">{{unidade.grandeza}}</td>
+				              </tr>
+				          </tbody>
+				        </table>
+
+				        <div ui-sref="cadastroUnidadeMedida" class="btn btn-info btn-fill btn-wd">
+		                  <i class="add icon"></i> Adicionar
+		                </div>
+				      </form>
+				    </div>
+				</div>
+		        
+			</form>
+		</div>
+	</div>

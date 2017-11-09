@@ -1,0 +1,279 @@
+<script type="text/javascript">
+$('.test.checkbox').checkbox();
+function escondeCampos(){
+    $("#pacote").hide();
+    $("#quantidade").hide();
+    $("#unidades").show();
+    
+}
+function exibeCampos(){
+    $("#pacote").show();
+    $("#quantidade").show();
+    $("#unidades").hide();
+}
+</script>
+<style type="text/css">
+.modal-backdrop{
+  z-index: -1 !important;
+}
+</style>
+
+
+        
+        <form name="ordemForm" class="ui form" prependId="false">
+
+
+
+          <div class="row">               
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h3 class="title">Ordem Nº {{vm.ordem.numero}}</h3>
+                                <hr>
+                            </div>
+                            <div class="content">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Fornecedor</label>
+                                                <select  ng-model="vm.ordem.fornecedor._id" class="form-control border-input"
+                                                        ng-options="fornecedor._id as fornecedor.nomeFantasia for fornecedor in vm.fornecedores">
+                                                    <option value="">Selecione o fornecedor</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Data Envio Pedido</label>
+                                                <input type="date" class="form-control border-input" ng-required="false" ng-model="vm.ordem.dataEnvioPedido" name="nome" placeholder="Data Envio"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Data Recebimento Pedido</label>
+                                                <input type="date" class="form-control border-input" ng-required="false" ng-model="vm.ordem.dataRecebimento" name="nome" placeholder="Data recebimento"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                          <label>Prazo de entrega</label>
+                                          <input type="number" class="form-control border-input" ng-required="true" ng-model="vm.ordem.prazoEntrega"  name="rg" value="" placeholder="" type="text"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                      <div class="form-group">
+                                        <div class="col-md-6">
+                                          <label>Comprador</label>
+                                          <input type="text" class="form-control border-input" ng-required="true" ng-model="vm.ordem.comprador" name="nome" placeholder="Nome"/>
+                                        </div>
+                                        
+                                      </div>
+                                    </div>
+
+                                    <div class="row" >
+                                        <div class="col-md-6" style="margin-top:15px">
+                                            <div class="form-group">
+                                                <label>Rate</label>
+                                                <input-stars max="5" readonly  allow-half ng-model="vm.ordem.rate.rate"></input-stars>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <div class="btn-group">
+                                                    <input type="radio" name="status"  ng-model="vm.ordem.status" ng-value="1" >rascunho</input>
+                                                    <input type="radio" name="status"  ng-model="vm.ordem.status" ng-value="2" >enviado</input>
+                                                    <input type="radio" name="status"  ng-model="vm.ordem.status" ng-value="3" >recebido</input>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Observações</label>
+                                                <textarea ng-model="vm.ordem.observacoes" rows="5" class="form-control border-input" 
+                                                placeholder="Observações sobre a compra" value="obs"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                     <div class="row">
+                                        <div class="header">
+                                            <h4 class="title">Itens Solicitados</h4>
+                                            <hr>
+                                        </div>
+                                      <table class="table table-striped">
+                                        <thead>
+                                          <tr>
+                                            <th>Item</th>
+                                            <th>Quantidade</th>
+                                            <th>Preço Total</th>
+                                            <th ng-show="item._id && !item.recebido">Receber</th>
+                                            <th ng-show="item._id">Avaliação</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr  ng-repeat="item in vm.ordem.itensCompra  | filter : filtro track by $index" class="positive">
+                                                <td data-backdrop="true" data-toggle="modal" data-target="#myModal" ng-click="vm.preencheItem(item)" >{{item.itemEstoque.nome}}</td>
+                                                <td data-backdrop="true" data-toggle="modal" data-target="#myModal" ng-click="vm.preencheItem(item)" >{{item.quantidadeSolicitada}}</td>
+                                                <td data-backdrop="true" data-toggle="modal" data-target="#myModal" ng-click="vm.preencheItem(item)" >{{item.precoTotal}}</td>
+                                                <td title="remover" ng-show="item._id && !item.recebido" ng-click="vm.removeItem(item)"><i class="ti-trash"></i></td>
+                                                <td title="receber" ng-show="item._id && !item.recebido" ng-click="vm.preencheItemRecebimento(item)" data-backdrop="true" data-toggle="modal" data-target="#modalRecebimento" ><i class="ti-download"></i></td>
+
+                                                <td title="Recebido" ng-show="item.recebido"><input-stars max="5" readonly  allow-half ng-model="item.rate.rate"></input-stars></td>
+                                          </tr>
+                                          
+                                        </tbody>
+                                        <tfoot class="full-width">
+                                            <tr>
+                                                <th colspan="2">Total
+                                                </th>
+                                                <th colspan="{{item._id ? 3:2}}">{{vm.ordem.precoTotal}}
+                                                </th>
+                                            </tr>
+                                            <tr>
+                                                <th colspan="5">
+                                                    <div ng-click="vm.limpaItem();" data-backdrop="true" data-toggle="modal" data-target="#myModal" class="btn btn-info btn-fill ">
+                                                        <i class="ti-plus"></i> 
+                                                    </div>
+                                                  
+                                                </th>
+                                            </tr>
+                                        </tfoot>
+                                      </table>  
+                                    </div>
+
+                                    <div class="text-center">
+
+                                        <input type="button" style="float:right"
+                                        ng-click="!vm.ordem._id ? vm.insert() : vm.update()" class="btn btn-fill btn-success" id="btsalvar" value="Salvar" />
+                    
+                                        <input type="button" ng-if="vm.ordem._id" ng-click="vm.delete()" class="btn btn-fill btn-danger" value="Inativar" id="  btexcluir" />
+
+                                        <a ui-sref="comprasFornecedores" class="btn btn-fill btn-primary">Ir para ordens</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+      </form>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" style="z-index:2000" tabindex="-1" role="dialog"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form>
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Item Estoque</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <input type="radio" onchange="escondeCampos()" name="tipo">Unidades</input>
+                    <input type="radio" onchange="exibeCampos()" name="tipo">Pacotes</input>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Item do estoque</label>
+                    <select class="form-control border-input" ng-options="item._id as item.nome for item in vm.itensEstoque track by item._id" 
+                      ng-model="vm.item.itemEstoque._id">
+                    </select>
+                </div>
+            </div>
+
+            
+
+            <div style="display:none" id="pacote" class="col-md-6">
+              <div class="form-group">
+                <label>Pacote</label>
+                <select class="form-control border-input"   ng-options="pacote._id as pacote.nome for pacote in vm.pacotes track by pacote._id" 
+                    ng-model="vm.item.pacote._id">
+                </select>
+              </div>
+            </div>
+
+            <div style="display:none" id="quantidade" class="col-md-6">
+              <div class="form-group">
+                <label>Quantidade</label>
+                <input type="number" ng-model="vm.item.quantidadePacotes"  class="form-control border-input" name="itemEstoque[quantidadeCritica]" placeholder="#" type="text"/>
+              </div>
+            </div>
+
+            <div id="unidades"  class="col-md-6">
+              <div class="form-group">
+                <label>Unidades</label>
+                <input type="number" ng-model="vm.item.quantidadeSolicitada" class="form-control border-input" name="itemEstoque[quantidadeCritica]" placeholder="#" type="text"/>
+              </div>
+            </div>
+            
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Preço Unitário</label>
+                <input type="money" ng-model="vm.item.precoUnitario" class="form-control border-input" />
+              </div>
+            </div>
+          </div></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" ng-click="vm.inserirItemNaLista()" data-dismiss="modal" class="btn btn-primary">Inserir</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalRecebimento" style="z-index:2000" tabindex="-1" role="dialog"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form name="formRecebimento">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Receber Item: <b>{{vm.itemRecebimento.itemEstoque.nome}}</b></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Avaliação: </label>
+                    <input-stars max="5" name="rate"  allow-half ng-model="vm.itemRecebimento.rate.rate"></input-stars>
+                </div>
+            </div>
+
+
+          </div></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" ng-click="vm.limparItemRecebimento()" data-dismiss="modal">Cancelar</button>
+        <button type="button" ng-click="vm.inserirItemRecebido()" ng-disabled="!vm.itemRecebimento.rate.rate" data-dismiss="modal" class="btn btn-primary">Receber</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>

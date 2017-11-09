@@ -1,0 +1,58 @@
+  <script type="text/javascript">
+
+
+  $( document ).ready(function() {
+
+    $('.ui.dropdown').dropdown();
+    $('.ui.checkbox').checkbox();
+  }
+
+  </script>
+
+  <div style="width: 100%;" class="ui raised very padded text container segment">
+    <h3 class="ui dividing header">Categorias</h3>
+    <div id="users">
+      <div class="one field">
+        <div class="field">
+          <input ng-model="filtro" class="search" style="width:100%;float:left;" placeholder="Filtro por Nome" />
+        </div>
+      </div>
+
+
+
+
+      <form name="listaUnidadesForm">
+        <table class="ui selectable celled table">
+          <thead>
+            <tr>
+              <th class="sort">Categoria</th>
+              <th>Sub Categorias</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>              
+              <tr ng-repeat="categoria in vm.categorias  | filter : filtro track by $index" class="positive">
+                   
+                    <td class="name">{{categoria.nome}}</td>
+                    <td>
+                        <ul>
+                          <div ng-repeat="sub in categoria.subCategorias">
+                          <li>{{sub.nome}} </li>
+                          </div>
+                        </ul>
+                    </td>
+
+
+                    <td class="center aligned">
+                        <i ui-sref="cadastroCategoria({id:categoria._id})" class="edit icon "/>
+                        <i ng-click="vm.delete(categoria._id)" class="delete icon "/>
+                    </td>
+              </tr>
+          </tbody>
+        </table>
+        <div class="ui circular green add icon button right floated">
+            <i ui-sref="cadastroCategoria" class="add icon"></i>
+        </div>
+      </form>
+    </div>
+</div>

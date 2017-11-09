@@ -1,0 +1,80 @@
+	<script type="text/javascript">
+
+
+	$( document ).ready(function() {
+
+		$('.ui.dropdown').dropdown();
+		$('.ui.checkbox').checkbox();
+
+
+		$('.ui .item').on('click', function() {
+		   $('.ui .item').removeClass('active');
+		   $(this).addClass('active');
+		}); 
+	}
+
+	</script>
+
+	<div style="width: 100%;" class="ui raised very padded text container segment">
+	    <h3 class="ui dividing header">Parametrizações</h3>
+	    <div id="users">
+			<form name="listaClienteForm">
+				<div class="ui menu secondary pointing ">
+				  <a ui-sref="painelParametrosUnidades" class="item ">
+				    Unidades de medida
+				  </a>
+				  <a ui-sref="painelParametrosCategorias" class="item active">
+				    Categorias
+				  </a>
+				  <a ui-sref="painelParametrosPacotes" class="item">
+				    Pacotes
+				  </a>
+
+				</div>
+				<div class="">
+					<div id="users">
+				      <div class="one field">
+				        <div class="field full width">
+				          <input ng-model="filtro" class="search" style="width:100%;float:left;" placeholder="Filtro por Nome" />
+				        </div>
+				      </div>
+
+				      <form name="listaUnidadesForm">
+				        <table class="ui selectable celled table">
+				          <thead>
+				            <tr>
+				              <th class="sort">Categoria</th>
+				              <th>Sub Categorias</th>
+				              <th class="center aligned">Remover</th>
+				            </tr>
+				          </thead>
+				          <tbody>              
+				              <tr ng-repeat="categoria in vm.categorias  | filter : filtro track by $index" class="positive">
+				                   
+				                    <td ui-sref="cadastroCategoria({id:categoria._id})" class="name">{{categoria.nome}}</td>
+				                    <td ui-sref="cadastroCategoria({id:categoria._id})">
+				                        <ul>
+				                          <div ng-repeat="sub in categoria.subCategorias">
+				                          <li>{{sub.nome}} </li>
+				                          </div>
+				                        </ul>
+				                    </td>
+
+				                    <td ui-sref="cadastroCategoria({id:categoria._id})" class="center aligned">
+							            <button ng-click="vm.delete(categoria._id)" class="circular ui icon button">
+						                  <i class="icon delete"></i>
+						                </button>
+				                    </td>
+				              </tr>
+				          </tbody>
+				        </table>
+				        <div ui-sref="cadastroCategoria" class="ui circular green add icon button right floated">
+				            <i  class="add icon"></i>
+				        </div>
+				      </form>
+				    </div>
+				</div>
+		        
+			</form>
+		</div>
+	</div>

@@ -1,0 +1,210 @@
+<script type="text/javascript">
+$('.test.checkbox').checkbox();
+</script>
+<style type="text/css">
+.modal-backdrop{
+  z-index: -1 !important;
+}
+</style>
+        
+        <form name="clienteForm" class="ui form" prependId="false">
+
+
+
+          <div class="row">               
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">Dados Produto</h4>
+                            </div>
+                            <div class="content">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="nome">Nome</label>
+                                                <input type="text" ng-required="true" class="form-control border-input" ng-model="vm.itemConsumo.nome"  name="nome" value="" placeholder="Nome Item" type="text" />
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Codigo</label>
+                                                <input ng-disabled="true" type="text"  value="" ng-model="vm.itemConsumo._id" placeholder="" class="form-control border-input" type="text"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Descrição</label>
+                                                <input type="text"  name="descricao" class="form-control border-input" ng-model="vm.itemConsumo.descricao" value="" placeholder="Descrição" type="text"/>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Categoria</label>
+                                                <select ng-change="vm.atualizaSubCategories()"  ng-model="vm.itemConsumo.categoria._id" class="form-control border-input"
+                                                        ng-options="cat._id as cat._id for cat in vm.parents">
+                                                    <option value="">Selecione a categoria</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Sub Categoria</label>
+                                                <select ng-model="vm.itemConsumo.subCategoria._id" class="form-control border-input"
+                                                  ng-options="sub._id as sub._id for sub in vm.subCategorias">
+                                                    <option value="">Selecione a sub categoria</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Status</label>
+                                                <input type="checkbox" style="width: 20%;" name="status" class="form-control border-input" ng-model="vm.itemConsumo.status" ng-value="{{vm.itemConsumo.status}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Favorito</label>
+                                                <input type="checkbox" style="width: 20%;" name="status" class="form-control border-input" ng-model="vm.itemConsumo.favorito" ng-value="{{vm.itemConsumo.favorito}}">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Preço de venda (R$)</label>
+                                                <input type="text"  name="descricao" class="form-control border-input" ng-model="vm.itemConsumo.precoVenda" value="" placeholder="Descrição" type="text"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Lucro (%)</label>
+                                                <input type="text"  name="descricao" class="form-control border-input"  value="{{(vm.itemConsumo.precoVenda / vm.itemConsumo.custoTotal * 100).toFixed(2)}}" placeholder="Descrição" type="text"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Custo (R$)</label>
+                                                <input disabled="disabled" type="text"  name="descricao" class="form-control border-input" ng-model="vm.itemConsumo.custoTotal" value="R$ {{vm.itemConsumo.custoTotal}}" placeholder="Descrição" type="text"/>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    
+                                    <div class="row">
+                                      <table class="table table-striped">
+                                        <thead>
+                                          <tr>
+                                            <th>Nome</th>
+                                            <th>Quantidade</th>
+                                            <th>Un. Medida</th>
+                                            <th>Custo</th>
+                                            <th></th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr  ng-repeat="item in vm.itemConsumo.listaItemEstoqueConsumo  | filter : filtro track by $index" class="positive">
+                                                <td data-backdrop="true" data-toggle="modal" data-target="#myModal" ng-click="vm.preencheItem(item)" >{{item.itemEstoque.nome}}</td>
+                                                <td data-backdrop="true" data-toggle="modal" data-target="#myModal" ng-click="vm.preencheItem(item)" >{{item.medida.medidaPorUnidade}}</td>
+                                                <td data-backdrop="true" data-toggle="modal" data-target="#myModal" ng-click="vm.preencheItem(item)" >{{item.medida.unidadeMedida.unidade}}</td>
+                                                <td data-backdrop="true" data-toggle="modal" data-target="#myModal" ng-click="vm.preencheItem(item)" >R$ {{item.custo}}</td>
+                                                <td ng-click="vm.removeItem(item)"><i class="ti-trash"></i></td>
+                                          </tr>
+                                          
+                                        </tbody>
+                                        <tfoot class="full-width">
+                                          <tr>
+                                            <th colspan="5">
+                                              <div data-backdrop="true" data-toggle="modal" data-target="#myModal" class="btn btn-info btn-fill ">
+                                                <i class="ti-plus"></i> 
+                                              </div>
+                                              
+                                            </th>
+                                          </tr>
+                                        </tfoot>
+                                      </table>  
+                                    </div>
+
+
+                                    <div class="text-center">
+                                      <input type="button" ng-disabled="clienteForm.$invalid"  style="float:right"
+                                        ng-click="!vm.itemConsumo._id ? vm.insert() : vm.update()" class="btn btn-fill btn-success" id="btsalvar" value="Salvar" />
+                    
+                                      <input type="button" ng-if="vm.itemConsumo._id" ng-click="vm.delete()" class="btn btn-fill btn-danger" value="Inativar" id="btexcluir" />
+
+                                      <input type="button" ng-click="vm.verificarCusto()" class="btn btn-fill btn-danger" value="teste" id="btteste" />
+
+                                      <a ui-sref="listaProduto" class="btn btn-fill btn-primary">Ir para lista</a>
+
+
+
+                                    </div>
+
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            
+          
+
+      </form>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" style="z-index:2000" tabindex="-1" role="dialog"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form>
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Item Estoque</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+
+        <div class="col-md-4">
+            <div class="form-group">
+              <label>Item do estoque</label>
+                <select class="form-control border-input" ng-options="item._id as item.nome for item in vm.itensEstoque track by item._id" 
+                  ng-model="vm.item.itemEstoque._id">
+                </select>
+            </div>
+          </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Quantidade</label>
+                <input type="number" ng-model="vm.item.medida.medidaPorUnidade" class="form-control border-input" name="itemEstoque[quantidadeCritica]" placeholder="#" type="text"/>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Un Medida</label>
+                <select class="form-control border-input" ng-options="unidade._id as unidade.unidade for unidade in vm.unidadeMedidas track by unidade._id" 
+                    ng-model="vm.item.medida.unidadeMedida._id">
+                </select>
+              </div>
+            </div>
+          </div></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        <button type="button" ng-click="vm.inserirItemNaLista()" data-dismiss="modal" class="btn btn-primary">Inserir</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+

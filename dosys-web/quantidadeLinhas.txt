@@ -1,0 +1,13 @@
+web/app/*.js  		2303
+web/app/*.html  	1365
+total				3668
+
+
+
+
+java
+night-core/*.java 	 	5688
+night-dominio/*.java  	1599
+night-web/*.java 	  	3210
+night-web/*.xhtml  		3588
+total					13985

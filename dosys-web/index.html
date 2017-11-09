@@ -1,0 +1,253 @@
+<html ng-app="app">
+<head>
+	<title></title>
+	<script src="node_modules/angular/angular.js"></script>
+	<script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="bower_components/angular-input-stars-directive/angular-input-stars.js"></script>
+	
+	<link rel="stylesheet" href="css/style.css">	
+	<link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="bower_components/angular-input-stars-directive/angular-input-stars.css">
+	<link rel="stylesheet" href="bower_components/bootstrap-toggle/css/bootstrap-toggle.min.css">
+
+    <link rel="stylesheet" href="bower_components/v-accordion/dist/v-accordion.css">
+    
+
+    <meta charset="utf-8" />
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Dosys - gestão de bares e restaurantes</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+
+    <!-- Bootstrap core CSS     -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Animation library for notifications   -->
+    <link href="assets/css/animate.min.css" rel="stylesheet"/>
+
+    <!--  Paper Dashboard core CSS    -->
+    <link href="assets/css/paper-dashboard.css" rel="stylesheet"/>
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="assets/css/demo.css" rel="stylesheet" />
+
+    <!--  Fonts and icons     -->
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="assets/css/themify-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="bower_components/ng-accordion/ng-accordion/dist/ng-accordion.min.css" />
+
+
+    <!--   Core JS Files   -->
+    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="bower_components/v-accordion/dist/v-accordion.js">
+    <link rel="stylesheet" href="bower_components/angular-animate/angular-animate.min.js">
+
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="assets/js/bootstrap-checkbox-radio.js"></script>
+
+    <!--  Charts Plugin -->
+    <script src="assets/js/chartist.min.js"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="assets/js/bootstrap-notify.js"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+    <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+    <script src="assets/js/paper-dashboard.js"></script>
+
+    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+    <script src="assets/js/demo.js"></script>
+    <!-- bootstrap toggle js -->
+	<script src="bower_components/bootstrap-toggle/js/bootstrap-toggle.min.js" type="text/javascript"></script>
+
+    <script src="bower_components/ng-accordion/ng-accordion/dist/ng-accordion.min.js" type="text/javascript"></script>
+
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-mask/1.8.7/mask.min.js"></script>
+
+	<script src="app/app.js"></script>
+	
+	<script src="app/controllers/login.controller.js"></script>
+	<script src="app/services/login.service.js"></script>
+
+	<script src="app/controllers/cliente.controller.js"></script>
+	<script src="app/services/cliente.service.js"></script>
+
+	<script src="app/controllers/itemConsumo.controller.js"></script>
+	<script src="app/services/itemConsumo.service.js"></script>
+
+	<script src="app/controllers/itemEstoque.controller.js"></script>
+	<script src="app/services/itemEstoque.service.js"></script>
+
+	<script src="app/controllers/unidadeMedida.controller.js"></script>
+	<script src="app/services/unidadeMedida.service.js"></script>
+
+	<script src="app/controllers/categoria.controller.js"></script>
+	<script src="app/services/categoria.service.js"></script>
+
+	<script src="app/controllers/pacote.controller.js"></script>
+	<script src="app/services/pacote.service.js"></script>
+
+	<script src="app/controllers/category.controller.js"></script>
+	<script src="app/services/category.service.js"></script>
+
+	<script src="app/controllers/fornecedor.controller.js"></script>
+	<script src="app/services/fornecedor.service.js"></script>
+
+    <script src="app/controllers/ordem.controller.js"></script>
+    <script src="app/services/ordem.service.js"></script>
+
+    <script src="app/controllers/comanda.controller.js"></script>
+    <script src="app/services/comanda.service.js"></script>
+
+	<script src="app/routes.js"></script>
+
+	<script src="js/interface.js"></script>
+
+
+
+	
+
+
+
+    <script type="text/javascript">
+		function showMenu(){
+			var box = $('.side-menu');
+			if (box.hasClass('hidden')) {
+			  	box.removeClass('hidden');
+		   		box.removeClass('visuallyhidden');
+			} else {
+			  box.addClass('visuallyhidden');
+			  box.addClass('hidden');
+			}
+		}
+        function selecionaMenuAtivo(selecionado){
+            console.log('entrou')
+            let lista = $(".menu");
+            
+            for(let i=0;i < lista.length; i++){ lista[i].classList.remove("active");}
+
+            $(".menu." + selecionado).addClass("active");
+            $(".navbar-brand").html(selecionado);
+            
+            console.log('saiu')
+        }
+
+        function mudarRadio(){
+        }
+
+        function remover(item){
+        }
+
+        function escondeCampos(){
+            $("#pacote").hide();
+            $("#quantidade").hide();
+            $("#unidades").show();
+            
+        }
+        function exibeCampos(){
+            $("#pacote").show();
+            $("#quantidade").show();
+            $("#unidades").hide();
+        }
+
+
+</script>
+    </script>
+</head>
+		    
+
+
+<body >
+<!-- 	<div ng-include="'/tags/sidebar.html'"></div>
+	<div ng-include="'/tags/header.html'"></div> -->
+
+	<div class="wrapper">
+	<div class="sidebar" data-background-color="white" data-active-color="danger">
+
+
+   		<div ng-include="'/tags/sidebar.html'"></div>
+    </div>
+
+    <div class="main-panel">
+		<nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar bar1"></span>
+                        <span class="icon-bar bar2"></span>
+                        <span class="icon-bar bar3"></span>
+                    </button>
+                    <a class="navbar-brand">Ordens</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a style="display:none" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="ti-panel"></i>
+								<p>Stats</p>
+                            </a>
+                        </li>
+                        <li class="dropdown" style="display:none">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="ti-bell"></i>
+                                    <p class="notification">5</p>
+									<p>Notifications</p>
+									<b class="caret"></b>
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Vodka Smirnoff estoque baixo</a></li>
+                              </ul>
+                        </li>
+						<li>
+                            <a ui-sref="painelParametrosCategories">
+								<i class="ti-settings"></i>
+								<p>Parametrizações</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+
+        <div class="content">
+            <div class="container-fluid">
+                <ui-view></ui-view>
+            </div>
+        </div>
+        
+
+
+        <footer class="footer">
+            <div class="container-fluid">
+				<div class="copyright pull-right">
+                    &copy; <script>document.write(new Date().getFullYear())</script>, by <a href="https://github.com/rodrigo-sntg">Rodrigo Santiago</a>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+</div>
+
+
+
+	
+
+
+
+</html>

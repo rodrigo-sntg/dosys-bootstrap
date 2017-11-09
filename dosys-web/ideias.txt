@@ -1,0 +1,17 @@
+# cadastro de fornecedores
+# otimização da utilização do estoque através de BI
+# solicitação de compra para fornecedores
+	- enviar emails solicitando produtos que estão abaixo do nível crítico
+
+
+tela para ordens
+	3 pools
+		ordens abertas - pode-se salvar uma ordem para um determinado fornecedor, passando o preço, quantidade de unidades ou quantidade de pacotes parametrizados
+		ordens efetuadas - as ordens feitas deverão aparecer aqui com uma data de entrega prevista pelo fornecedor
+		ordens recebidas - quando a ordem que foi efetuada efetivamente chegar, deverá ser confirmado item por item e inserido diretamente no estoque
+
+
+no modal de ordens rascunho
+	- selecionar o fornecedor
+	- selecionar o produto
+	- selecionar se é quantidade em unidades ou caixas pré cadastradas
