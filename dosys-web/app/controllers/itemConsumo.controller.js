@@ -186,6 +186,15 @@ class ItemConsumoController{
 
 
 	            that.itemConsumo.listaItemEstoqueConsumo.push(that.item);
+            	let custo = 0;
+
+	            let lista = that.itemConsumo.listaItemEstoqueConsumo;
+	            for(let i = 0 ; i < lista.length ; i++){
+	            	custo += lista[i].custo;
+	            }
+
+	            that.itemConsumo.custoTotal = custo;
+
 	            // item inserido na lista, agora podemos limpá-lo
 					that.item = new Object;
         	});
@@ -227,6 +236,16 @@ class ItemConsumoController{
 
 	removeItem(item){
 		this.itemConsumo.listaItemEstoqueConsumo = this.itemConsumo.listaItemEstoqueConsumo.filter(i => item.itemEstoque._id != i.itemEstoque._id);
+
+		let custo = 0;
+
+	    let lista = this.itemConsumo.listaItemEstoqueConsumo;
+	    for(let i = 0 ; i < lista.length ; i++){
+	    	custo += lista[i].custo;
+	    }
+
+	    this.itemConsumo.custoTotal = custo;
+
 	}
 
 	verificarCusto(){

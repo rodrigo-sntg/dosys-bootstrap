@@ -59,15 +59,14 @@ $('.test.checkbox').checkbox();
 
                       <div class="col-md-6">
                           <div class="form-group">
-                              <label for="nome">Nome</label>
+                              <label for="nome">Nome <span class="obrigatorio" title="Obrigatório">*</span></label>
                               <input type="text" ng-required="true" class="form-control border-input" ng-model="vm.itemEstoque.nome"  name="nome" value="" placeholder="Nome Item" type="text" />
-                              
                           </div>
                       </div>
-                      <div class="col-md-6">
+                      <div ng-if="vm.itemEstoque._id" class="col-md-6">
                           <div class="form-group">
                               <label>Codigo</label>
-                              <input ng-disabled="true" type="text"  value="" ng-required="true" ng-model="vm.itemEstoque._id" placeholder="" class="form-control border-input" type="text"/>
+                              <input ng-disabled="true" type="text"  value="" ng-model="vm.itemEstoque._id" placeholder="" class="form-control border-input" type="text"/>
                           </div>
                       </div>
 
@@ -80,8 +79,8 @@ $('.test.checkbox').checkbox();
                       
                       <div class="col-md-6">
                           <div class="form-group">
-                              <label>Categoria</label>
-                              <select ng-change="vm.atualizaSubCategories()"  ng-model="vm.itemEstoque.categoria._id" class="form-control border-input"
+                              <label>Categoria <span class="obrigatorio" title="Obrigatório">*</span></label>
+                              <select ng-required="true" ng-change="vm.atualizaSubCategories()"  ng-model="vm.itemEstoque.categoria._id" class="form-control border-input"
                                       ng-options="cat._id as cat._id for cat in vm.parents">
                                   <option value="">Selecione a categoria</option>
                               </select>
@@ -90,32 +89,32 @@ $('.test.checkbox').checkbox();
 
                       <div class="col-md-6">
                           <div class="form-group">
-                              <label>Sub Categoria</label>
-                              <select ng-change="vm.mostra()" ng-model="vm.itemEstoque.subCategoria._id" class="form-control border-input"
+                              <label>Sub Categoria <span class="obrigatorio" title="Obrigatório">*</span></label>
+                              <select ng-required="true" ng-change="vm.mostra()" ng-model="vm.itemEstoque.subCategoria._id" class="form-control border-input"
                                 ng-options="sub._id as sub._id for sub in vm.subCategorias">
                                   <option value="">Selecione a sub categoria</option>
                               </select>
                           </div>
                       </div>
 
-                      <div class="col-md-4">
+                      <div class="col-md-2">
                           <div class="form-group">
-                              <label>Preço de venda</label>
-                              <input type="text"  name="descricao" class="form-control border-input" ng-model="vm.itemEstoque.qtdCritica" value="" placeholder="Descrição" type="text"/>
-                          </div>
-                      </div>
-
-                      <div class="col-md-4">
-                          <div class="form-group">
-                              <label>Quantidade por Unidade</label>
-                              <input type="text"   name="descricao" class="form-control border-input" ng-model="vm.itemEstoque.medida.medidaPorUnidade" value="" placeholder="Descrição" type="text"/>
+                              <label>Preço (R$)  <span class="obrigatorio" title="Obrigatório">*</span></label>
+                              <input type="text" ng-required="true"  name="descricao" class="form-control border-input" ng-model="vm.itemEstoque.qtdCritica" value="" placeholder="Descrição" type="text"/>
                           </div>
                       </div>
 
                       <div class="col-md-2">
                           <div class="form-group">
-                              <label>Undiade Medida</label>
-                              <select ng-model="vm.itemEstoque.medida.unidadeMedida._id" class="form-control border-input" ng-options="unidade._id as unidade.unidade for unidade in vm.unidadeMedidas">
+                              <label>Quantidade  <span class="obrigatorio" title="Obrigatório">*</span></label>
+                              <input type="text" ng-required="true"  name="descricao" class="form-control border-input" ng-model="vm.itemEstoque.medida.medidaPorUnidade" value="" placeholder="Descrição" type="text"/>
+                          </div>
+                      </div>
+
+                      <div class="col-md-4">
+                          <div class="form-group">
+                              <label>Un Medida  <span class="obrigatorio" title="Obrigatório">*</span></label>
+                              <select ng-required="true" ng-model="vm.itemEstoque.medida.unidadeMedida._id" class="form-control border-input" ng-options="unidade._id as unidade.unidade for unidade in vm.unidadeMedidas">
                                   <option value="">Selecione a categoria</option>
                               </select>
                           </div>
@@ -137,7 +136,7 @@ $('.test.checkbox').checkbox();
   
                     <input type="button" ng-if="vm.itemEstoque._id" ng-click="vm.delete()" class="btn btn-fill btn-danger" value="Inativar" id="  btexcluir" />
 
-                    <a ui-sref="listaEstoque" class="btn btn-fill btn-primary">Ir para lista</a>
+                    <a ui-sref="listaEstoque" class="btn btn-fill btn-primary">Voltar</a>
                   </div>
                   <div class="clearfix"></div>
                 </div>
@@ -187,7 +186,7 @@ $('.test.checkbox').checkbox();
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="button" ng-click="vm.inserirEntrada()" class="btn btn-primary">Inserir</button>
+          <button type="button" ng-click="vm.inserirEntrada()" data-dismiss="modal" class="btn btn-primary">Inserir</button>
         </div>
       </form>
     </div>

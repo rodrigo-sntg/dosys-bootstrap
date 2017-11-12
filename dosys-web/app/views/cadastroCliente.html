@@ -17,14 +17,14 @@ $('.test.checkbox').checkbox();
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="nome">Nome</label>
+                                                <label for="nome">Nome <span class="obrigatorio" title="Obrigatório">*</span></label>
                                                 <input type="text" id="nome" class="form-control border-input" ng-required="true" ng-model="vm.cliente.nome" name="nome" placeholder="Nome"/>
                                                 
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Data Nascimento</label>
+                                                <label>Data Nascimento <span class="obrigatorio" title="Obrigatório">*</span></label>
                                                 <div class="ui calendar" >
                                                 <input style="width:100%" class="form-control border-input" ng-required="true" type="date"  ng-model="vm.cliente.dataNascimento" 
                                                     name="dataNascimento" class="" id="dataNascimento" />
@@ -34,29 +34,36 @@ $('.test.checkbox').checkbox();
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>CPF</label>
-                                                <input type="text" ng-required="true" class="form-control border-input" ng-model="vm.cliente.cpf" class="cpf" name="cpf" equired="true" value="" placeholder="xxx.xxx.xxx-xx" type="text"/>
-
+                                                <label>e-mail <span class="obrigatorio" title="Obrigatório">*</span></label>
+                                                <input type="text" ng-required="true" class="form-control border-input" ng-model="vm.cliente.email" class="email" name="email"  value="" type="text"/>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Telefone</label>
+                                                <label>Telefone <span class="obrigatorio" title="Obrigatório">*</span></label>
                                                 <input type="text" class="rg form-control border-input" ng-required="true" ng-model="vm.cliente.telefone"  name="telefone" value="" type="text"/>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>RG</label>
-                                                <input type="text" class="rg form-control border-input" ng-required="true" ng-model="vm.cliente.rg"  name="rg" value="" placeholder="x.xxx.xxx-x" type="text"/>
+                                                <label>CPF <span class="obrigatorio" title="Ou CPF ou RG obrigatório">**</span></label>
+                                                <input type="text" ng-required="!vm.cliente.rg" class="form-control border-input" ng-model="vm.cliente.cpf" class="cpf" name="cpf"  value="" placeholder="xxx.xxx.xxx-xx" type="text"/>
+
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Status</label>
+                                                <label>RG <span class="obrigatorio" title="Ou CPF ou RG obrigatório">**</span></label>
+                                                <input type="text" class="rg form-control border-input" ng-required="!vm.cliente.cpf" ng-model="vm.cliente.rg"  name="rg" value="" placeholder="x.xxx.xxx-x" type="text"/>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-md-1">
+                                            <div class="form-group">
+                                                <label>Ativo</label>
                                                 <input type="checkbox" name="status" class="form-control border-input" ng-model="vm.cliente.status" ng-value="{{vm.cliente.status}}">
                                             </div>
                                         </div>
@@ -67,7 +74,7 @@ $('.test.checkbox').checkbox();
                                     <div class="row">
                                         <div class="col-md-9">
                                             <div class="form-group">
-                                                <label>Endereço</label>
+                                                <label>Endereço <span class="obrigatorio" title="Obrigatório">*</span></label>
                                                 <input type="text" ng-model="vm.cliente.endereco.rua" ng-required="true" name="rua" value="" placeholder="Endereço" type="text" class="form-control border-input" />
                                             </div>
                                         </div>
@@ -83,14 +90,21 @@ $('.test.checkbox').checkbox();
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Cidade</label>
+                                                <label>Cidade <span class="obrigatorio" title="Obrigatório">*</span></label>
                                                 <input type="text" ng-model="vm.cliente.endereco.cidade" class="form-control border-input" 
                                                   ng-required="true" name="cidade" value="" placeholder="cidade" type="text"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Estado</label>
+                                                <label>CEP</label>
+                                                <input type="text" ng-model="vm.cliente.endereco.cep" class="form-control border-input" 
+                                                   name="cep" value="" placeholder="cep" type="text"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Estado <span class="obrigatorio" title="Obrigatório">*</span></label>
                                                 <select class="form-control border-input" ng-model="vm.cliente.endereco.uf" 
                                                   name="uf" ng-required="true" class="ui fluid dropdown">
                                                   <option value="ac" >Acre</option>
@@ -131,7 +145,7 @@ $('.test.checkbox').checkbox();
                     
                                       <input type="button" ng-if="vm.cliente._id" ng-click="vm.delete()" class="btn btn-fill btn-danger" value="Inativar" id="  btexcluir" />
 
-                                      <a ui-sref="listaCliente" class="btn btn-fill btn-primary">Ir para lista</a>
+                                      <a ui-sref="listaCliente" class="btn btn-fill btn-primary">Voltar</a>
                                     </div>
 
                                     <div class="clearfix"></div>

@@ -1,7 +1,40 @@
-<h1>app teste sei lá</h1>
+<script type="text/javascript">
+$('.test.checkbox').checkbox();
+</script>
+        
+<form name="clienteForm" class="ui form" prependId="false">
+    <div class="row">               
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
 
-<a ui-sref="home">Home</a>
+                <div class="content">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="nome">Login</label>
+                                    <input type="text" class="form-control border-input" ng-model="vm.usuario.login" class="form-control" name="login">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="nome">Senha</label>
+                                    <input type="password" class="form-control border-input" ng-model="vm.usuario.senha" class="form-control" name="senha">
+                                </div>
+                            </div>
+                           
+                        </div>
 
-<input type="text" ng-model="vm.usuario.login" class="form-control" name="login">
-<input type="password" ng-model="vm.usuario.senha" class="form-control" name="senha">
-<button ng-click="vm.entrar()" >Entrar</button>
+                        <div class="text-center">
+                        	<button class="btn btn-fill btn-success" ng-click="vm.entrar()" >Entrar</button>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+	</div>
+</form>

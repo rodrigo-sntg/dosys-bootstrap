@@ -6,6 +6,7 @@ const
 	
 	ClienteSchema = new Schema({
 		nome:{type:String},
+		email:{type:String},
 		dataNascimento:Date,
 		cpf:{type:String, unique:true},
 		status:Boolean,

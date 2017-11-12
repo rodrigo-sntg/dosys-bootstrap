@@ -250,4 +250,7 @@ td.vertical-middle, .vertical-middle {
 /* 	    width: 100%; */
 /* 	  } */
 /*   } */
-  
+  .obrigatorio{
+    color:red;
+    font-weight: bold;
+  }

@@ -121,8 +121,7 @@ class ItemEstoqueController{
 		console.log(this.item)
 		this.itemEstoque.historicoPrecosCompra.push(this.item);
 		this.itemEstoqueService.inserirEntrada(this.itemEstoque).then(function (response){
-				that.itemEstoque = response.data;
-			
+			that.getById(that.itemEstoque._id);
 		}).catch(function(erro){
 			console.log(erro);
 		});

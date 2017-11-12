@@ -42,20 +42,18 @@ $('.test.checkbox').checkbox();
                                 <table style="width:100%">
                                   <tr>
                                     <th>Item</th>
-                                    <th>Qtd</th>
-                                    <th>Preço</th>
+                                    <th>R$</th>
                                   </tr>
                                   
                                   <tr ng-repeat="item in ordem.itensCompra  | filter : filtro track by $index">
                                     <td>{{item.itemEstoque.nome}}</td>
-                                    <td>{{item.quantidadeSolicitada}} un</td>
-                                    <td>R$ {{item.precoTotal}}</td>
+                                    <td>{{item.precoTotal}}</td>
                                   </tr>
                                   <tfoot class="full-width">
                                       <tr>
-                                          <th colspan="2">Total
+                                          <th colspan="1">Total
                                           </th>
-                                          <th colspan="">R$ {{ordem.precoTotal}}
+                                          <th colspan="">{{ordem.precoTotal}}
                                           </th>
                                       </tr>
                                   </tfoot>
@@ -99,20 +97,18 @@ $('.test.checkbox').checkbox();
                                 <table style="width:100%">
                                   <tr>
                                     <th>Item</th>
-                                    <th>Qtd</th>
-                                    <th>Preço</th>
+                                    <th>R$</th>
                                   </tr>
                                   
                                   <tr ng-repeat="item in ordem.itensCompra  | filter : filtro track by $index">
                                     <td>{{item.itemEstoque.nome}}</td>
-                                    <td>{{item.quantidadeSolicitada}} un</td>
-                                    <td>R$ {{item.precoTotal}}</td>
+                                    <td>{{item.precoTotal}}</td>
                                   </tr>
                                   <tfoot class="full-width">
                                       <tr>
-                                          <th colspan="2">Total
+                                          <th colspan="1">Total
                                           </th>
-                                          <th colspan="">R$ {{ordem.precoTotal}}
+                                          <th colspan="">{{ordem.precoTotal}}
                                           </th>
                                       </tr>
                                   </tfoot>
@@ -160,20 +156,18 @@ $('.test.checkbox').checkbox();
                                 <table style="width:100%">
                                   <tr>
                                     <th>Item</th>
-                                    <th>Qtd</th>
-                                    <th>Preço</th>
+                                    <th>R$</th>
                                   </tr>
                                   
                                   <tr ng-repeat="item in ordem.itensCompra  | filter : filtro track by $index">
                                     <td>{{item.itemEstoque.nome}}</td>
-                                    <td>{{item.quantidadeSolicitada}} un</td>
-                                    <td>R$ {{item.precoTotal}}</td>
+                                    <td>{{item.precoTotal}}</td>
                                   </tr>
                                   <tfoot class="full-width">
                                       <tr>
-                                          <th colspan="2">Total
+                                          <th colspan="1">Total
                                           </th>
-                                          <th colspan="">R$ {{ordem.precoTotal}}
+                                          <th colspan="">{{ordem.precoTotal}}
                                           </th>
                                       </tr>
                                   </tfoot>

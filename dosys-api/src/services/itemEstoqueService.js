@@ -65,7 +65,7 @@ class ItemEstoqueService {
 		}).populate({
 		    path: 'medida',
 		    populate: { path: 'unidadeMedida'}
-		});
+		}).populate('historicoPrecosCompra');
 
 		let subCategory = yield Category.findOne({_id:item.subCategoria}).populate('parent');
 		if(subCategory){
@@ -81,7 +81,7 @@ class ItemEstoqueService {
 		return yield ItemEstoque.find().populate({
 		    path: 'medida',
 		    populate: { path: 'unidadeMedida'}
-		});
+		}).populate('historicoPrecosCompra');
 	}
 
 
@@ -106,15 +106,20 @@ class ItemEstoqueService {
 
 		if(historicoPrecosCompra instanceof Array)
 			for(var i = 0; i < historicoPrecosCompra.length; i++){
-				let o = JSON.parse(historicoPrecosCompra[i]);
-				let teste = new Entrada(o);
+				try{
+					let o = JSON.parse(historicoPrecosCompra[i]);
+					let teste = new Entrada(o);
 
-				teste.save();
-				itemEstoque.historicoPrecosCompra.push(teste._id.toString());
+					teste.save();
+					itemEstoque.historicoPrecosCompra.push(teste._id.toString());
 
-				itemEstoque.qtdEstoque += o.quantidade;
-				itemEstoque.custoTotalEstoque += o.quantidade * o.precoUnitario;
-				itemEstoque.custoUnitario = itemEstoque.custoTotalEstoque / itemEstoque.qtdEstoque;
+					itemEstoque.qtdEstoque += o.quantidade;
+					itemEstoque.custoTotalEstoque += o.quantidade * o.precoUnitario;
+					itemEstoque.custoUnitario = itemEstoque.custoTotalEstoque / itemEstoque.qtdEstoque;
+
+				}catch(Error){
+					
+				}
 			}
 		else{
 			let o = JSON.parse(historicoPrecosCompra);
@@ -133,7 +138,7 @@ class ItemEstoqueService {
 		let item = yield ItemEstoque.update({_id:itemEstoque._id}, itemEstoque);
 
 		console.log(itemEstoque);
-
+		return item;
 		
 	}
 

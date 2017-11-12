@@ -6,21 +6,21 @@ const
 	Schema = mongoose.Schema,
 
 	OrdemSchema = new Schema({
-		numero:Number,
+		comprador:String,
+		observacoes:String,
 		dataEnvioPedido:Date,
 		dataRecebimento:Date,
-		comprador:String,
-		prazoEntrega:Number,
-		rate:{type:Schema.Types.ObjectId, ref:"Rate"},
-		usuarioSolicitador:{type:Schema.Types.ObjectId, ref:"User"},
-		fornecedor:{type:Schema.Types.ObjectId, ref:"Fornecedor"},
-		status:Number,
 		rascunho:Boolean,
 		enviada:Boolean,
 		recebido:Boolean,
-		observacoes:String,
-		itensCompra:[{type:Schema.Types.ObjectId, ref:"ItemCompraEstoque"}],
-		precoTotal:Number
+		status:Number,
+		numero:Number,
+		prazoEntrega:Number,
+		precoTotal:Number,
+		rate:{type:Schema.Types.ObjectId, ref:"Rate"},
+		usuarioSolicitador:{type:Schema.Types.ObjectId, ref:"User"},
+		fornecedor:{type:Schema.Types.ObjectId, ref:"Fornecedor"},
+		itensCompra:[{type:Schema.Types.ObjectId, ref:"ItemCompraEstoque"}]
 	});
 
 

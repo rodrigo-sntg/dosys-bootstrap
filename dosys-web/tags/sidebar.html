@@ -1,88 +1,47 @@
-<!-- <div class="side-menu hidden">
-	<div class="myMenu">
-		<div class="ui left fixed vertical menu" style="position: fixed;border-top: 50px;border-left: none;top: 50px;">
-			<div class="item">
-				<h2><b>DOSIS</b></h2>
-			</div>
-			<a class="item" ui-sref="listaCliente">
-				<i class="users big icon " style="float: left;margin-left: 0px;margin-top: -5px;padding-right: 10px;">
-				</i>Lista Clientes</a>
-
-			<a class="item" ui-sref="listaProduto"><i class="list layout big icon " 
-				style="float: left;margin-left: 0px;margin-top: -5px;padding-right: 10px;"></i>Lista Produto</a>
-
-			<a class="item" ui-sref="listaEstoque"><i class="in cubes big icon " 
-				style="float: left;margin-left: 0px;margin-top: -5px;padding-right: 10px;"></i>Lista Estoque</a>
-			
-			<a class="item" ui-sref="painelParametrosUnidades"><i class="in settings big icon " 
-				style="float: left;margin-left: 0px;margin-top: -5px;padding-right: 10px;"></i>Parâmetros</a>
-
-			<a class="item" ui-sref="cadastroCategory"><i class="in settings big icon " 
-				style="float: left;margin-left: 0px;margin-top: -5px;padding-right: 10px;"></i>cadastroCategory</a>
-
-			<a class="item" ui-sref="cadastroFornecedor"><i class="in settings big icon " 
-				style="float: left;margin-left: 0px;margin-top: -5px;padding-right: 10px;"></i>cadastro Fornecedor</a>
-			
-		</div>
-	</div>
-</div> -->
-
-
-
-
 <div class="sidebar-wrapper">
-        <div class="logo">
-            <a class="simple-text">
-                DOSYS
+    <div class="logo">
+        <a onclick="selecionaMenuAtivo('home')" ui-sref="home" class="simple-text">
+            DOSYS
+        </a>
+    </div>
+
+    <ul class="nav">
+
+        <li class="menu cliente">
+            <a onclick="selecionaMenuAtivo('cliente')"  ui-sref="listaCliente">
+                <i class="ti-user"></i>
+                <p>Clientes</p>
             </a>
-        </div>
-
-        <ul class="nav">
-
-            <li class="menu cliente">
-                <a onclick="selecionaMenuAtivo('cliente')"  ui-sref="listaCliente">
-                    <i class="ti-user"></i>
-                    <p>Clientes</p>
-                </a>
-            </li>
-            <li class="menu fornecedor">
-                <a onclick="selecionaMenuAtivo('fornecedor')"  ui-sref="listaFornecedores">
-                    <i class="ti-package"></i>
-                    <p>Fornecedores</p>
-                </a>
-            </li>
-            <li class="menu listaProduto">
-                <a onclick="selecionaMenuAtivo('listaProduto')"  ui-sref="listaProduto">
-                    <i class="ti-archive"></i>
-                    <p>Produtos</p>
-                </a>
-            </li>
-            <li class="menu listaEstoque">
-                <a onclick="selecionaMenuAtivo('listaEstoque')"  ui-sref="listaEstoque">
-                    <i class="ti-server"></i>
-                    <p>Estoque</p>
-                </a>
-            </li>
-            <li class="menu comprasFornecedores">
-                <a onclick="selecionaMenuAtivo('comprasFornecedores')"  ui-sref="comprasFornecedores">
-                    <i class="ti-clipboard"></i>
-                    <p>Ordens</p>
-                </a>
-            </li>
-            <li class="menu comanda">
-                <a onclick="selecionaMenuAtivo('comanda')"  ui-sref="comanda">
-                    <i class="ti-receipt"></i>
-                    <p>Comandas</p>
-                </a>
-            </li>
-
-            
-
-                <!-- <a ui-sref="painelParametrosCategories">
-                    <i class="ti-panel"></i>
-                    <p>Parametrizações</p>
-                </a> -->
-            </li>
-        </ul>
-	</div>
+        </li>
+        <li class="menu fornecedor">
+            <a onclick="selecionaMenuAtivo('fornecedor')"  ui-sref="listaFornecedores">
+                <i class="ti-package"></i>
+                <p>Fornecedores</p>
+            </a>
+        </li>
+        <li class="menu listaProduto">
+            <a onclick="selecionaMenuAtivo('listaProduto')"  ui-sref="listaProduto">
+                <i class="ti-archive"></i>
+                <p>Produtos</p>
+            </a>
+        </li>
+        <li class="menu listaEstoque">
+            <a onclick="selecionaMenuAtivo('listaEstoque')"  ui-sref="listaEstoque">
+                <i class="ti-server"></i>
+                <p>Estoque</p>
+            </a>
+        </li>
+        <li class="menu comprasFornecedores">
+            <a onclick="selecionaMenuAtivo('comprasFornecedores')"  ui-sref="comprasFornecedores">
+                <i class="ti-clipboard"></i>
+                <p>Ordens</p>
+            </a>
+        </li>
+        <li class="menu comanda">
+            <a onclick="selecionaMenuAtivo('comanda')"  ui-sref="comanda">
+                <i class="ti-receipt"></i>
+                <p>Comandas</p>
+            </a>
+        </li>
+    </ul>
 </div>

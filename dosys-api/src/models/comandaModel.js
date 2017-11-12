@@ -11,7 +11,7 @@ const
 		desconto:Number,
 		valorTotal:Number,
 		valorPago:Number,
-		listaItemComanda:[{ type : Schema.Types.ObjectId, ref: 'ItemComanda' }],
+		listaItemComanda:[{ type : Schema.Types.ObjectId, ref: 'ItemConsumo' }],
 		cliente:{type:Schema.Types.ObjectId, ref:"Cliente"},
 		listaPagamento:[{ type : Schema.Types.ObjectId, ref: 'Pagamento' }],
 	})

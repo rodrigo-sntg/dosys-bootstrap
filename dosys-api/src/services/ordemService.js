@@ -126,33 +126,33 @@ class OrdemService {
 							
 					}
 
-					if(item.rate._id){
+					if(item.rate && item.rate._id){
 						// rate = yield Rate.update({_id:ordem.rate._id}, ordem.rate);
 						let rateObj = new Rate(item.rate);
 						rateObj.save();
 						item.rate = rateObj._id.toString();
 					}
-					else{
+					else if(item.rate){
 						let rateObj = new Rate(item.rate);
 						rateObj.save();
 						item.rate = rateObj._id.toString();
 					}
 
-					if(ordem.rate){
-						ordem.rate = JSON.parse(ordem.rate);
-						let rate;
-						if(ordem.rate._id){
-							// rate = yield Rate.update({_id:ordem.rate._id}, ordem.rate);
-							let rateObj = new Rate(ordem.rate);
-							rateObj.save();
-							ordem.rate = rateObj._id.toString();
-						}
-						else{
-							let rateObj = new Rate(ordem.rate);
-							rateObj.save();
-							ordem.rate = rateObj._id.toString();
-						}
-					}
+					// if(ordem.rate){
+					// 	ordem.rate = JSON.parse(ordem.rate);
+					// 	let rate;
+					// 	if(ordem.rate._id){
+					// 		// rate = yield Rate.update({_id:ordem.rate._id}, ordem.rate);
+					// 		let rateObj = new Rate(ordem.rate);
+					// 		rateObj.save();
+					// 		ordem.rate = rateObj._id.toString();
+					// 	}
+					// 	else{
+					// 		let rateObj = new Rate(ordem.rate);
+					// 		rateObj.save();
+					// 		ordem.rate = rateObj._id.toString();
+					// 	}
+					// }
 					
 
 					// let novoItem = new ItemCompraEstoque(item);
@@ -172,8 +172,12 @@ class OrdemService {
 					// let id = new ObjectId(novoItem._id.toString())
 					if(!updateItem._id)
 						ordem.itensCompra.push(item._id);
-					else
-						ordem.itensCompra.push(updateItem._id);
+					else{
+						if(updateItem._id instanceof ObjectId)
+							ordem.itensCompra.push(updateItem._id.toString());
+						else
+							ordem.itensCompra.push(updateItem._id);
+					}
 				}
 			}else{
 
@@ -214,26 +218,26 @@ class OrdemService {
 						item.rate = rateObj._id.toString();
 					}
 
-					if(ordem.rate){
-						try{
-							ordem.rate = JSON.parse(ordem.rate);
+					// if(ordem.rate){
+					// 	try{
+					// 		ordem.rate = JSON.parse(ordem.rate);
 
-						}catch(error){
+					// 	}catch(error){
 							
-						}
-						let rate;
-						if(ordem.rate._id){
-							// rate = yield Rate.update({_id:ordem.rate._id}, ordem.rate);
-							let rateObj = new Rate(ordem.rate);
-							rateObj.save();
-							ordem.rate = rateObj._id.toString();
-						}
-						else{
-							let rateObj = new Rate(ordem.rate);
-							rateObj.save();
-							ordem.rate = rateObj._id.toString();
-						}
-					}
+					// 	}
+					// 	let rate;
+					// 	if(ordem.rate._id){
+					// 		// rate = yield Rate.update({_id:ordem.rate._id}, ordem.rate);
+					// 		let rateObj = new Rate(ordem.rate);
+					// 		rateObj.save();
+					// 		ordem.rate = rateObj._id.toString();
+					// 	}
+					// 	else{
+					// 		let rateObj = new Rate(ordem.rate);
+					// 		rateObj.save();
+					// 		ordem.rate = rateObj._id.toString();
+					// 	}
+					// }
 					
 
 					// let novoItem = new ItemCompraEstoque(item);
@@ -259,6 +263,28 @@ class OrdemService {
 
 		// let ordemSalva = new Ordem(ordem);
 		// ordemSalva.save();
+
+
+		if(ordem.rate){
+			try{
+				ordem.rate = JSON.parse(ordem.rate);
+
+			}catch(error){
+				
+			}
+			let rate;
+			if(ordem.rate._id){
+				// rate = yield Rate.update({_id:ordem.rate._id}, ordem.rate);
+				let rateObj = new Rate(ordem.rate);
+				rateObj.save();
+				ordem.rate = rateObj._id.toString();
+			}
+			else{
+				let rateObj = new Rate(ordem.rate);
+				rateObj.save();
+				ordem.rate = rateObj._id.toString();
+			}
+		}
 
 
 

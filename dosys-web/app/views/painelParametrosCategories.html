@@ -79,14 +79,14 @@
                         <td ui-sref="cadastroCategory({id:categoria._id})" class="name">{{categoria._id}}</td>
                         <td>
                             <ul>
-                              <li title="Nova" style="color:darkblue;" ui-sref="cadastroCategory" class="click novo"><i style="padding-left: 1.2em;text-indent: -4.2em;color:darkblue;"  class="add icon"></i> Add</li>
+                              <li title="Nova" style="color:darkblue;" ui-sref="cadastroCategory" class="click novo"><i style="padding-left: 1.2em;text-indent: -4.2em;color:darkblue;"  class="add icon"></i> Adicionar Nova SubCategoria</li>
                               <div ng-repeat="sub in categoria.subCategorias">
                                 <li title="Editar Sub Categoria" ui-sref="cadastroCategory({id:sub._id})" class="click">{{sub._id}} </li>
                               </div>
                             </ul>
                         </td>
 
-                        <td ui-sref="cadastroCategory({id:categoria._id})" class="center aligned">
+                        <td class="center aligned">
                           <button title="Remover" style="z-index:99" ng-click="vm.delete(categoria._id)" class="btn btn-danger btn-fill">
                             <i class="ti-trash"></i>
                           </button>

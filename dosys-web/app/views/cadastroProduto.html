@@ -22,12 +22,12 @@ $('.test.checkbox').checkbox();
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="nome">Nome</label>
+                                                <label for="nome">Nome <span class="obrigatorio" title="Obrigatório">*</span></label>
                                                 <input type="text" ng-required="true" class="form-control border-input" ng-model="vm.itemConsumo.nome"  name="nome" value="" placeholder="Nome Item" type="text" />
                                                 
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div ng-if="vm.itemConsumo._id" class="col-md-6">
                                             <div class="form-group">
                                                 <label>Codigo</label>
                                                 <input ng-disabled="true" type="text"  value="" ng-model="vm.itemConsumo._id" placeholder="" class="form-control border-input" type="text"/>
@@ -43,7 +43,7 @@ $('.test.checkbox').checkbox();
                                         
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Categoria</label>
+                                                <label>Categoria <span class="obrigatorio" title="Obrigatório">*</span></label>
                                                 <select ng-change="vm.atualizaSubCategories()"  ng-model="vm.itemConsumo.categoria._id" class="form-control border-input"
                                                         ng-options="cat._id as cat._id for cat in vm.parents">
                                                     <option value="">Selecione a categoria</option>
@@ -53,7 +53,7 @@ $('.test.checkbox').checkbox();
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label>Sub Categoria</label>
+                                                <label>Sub Categoria <span class="obrigatorio" title="Obrigatório">*</span></label>
                                                 <select ng-model="vm.itemConsumo.subCategoria._id" class="form-control border-input"
                                                   ng-options="sub._id as sub._id for sub in vm.subCategorias">
                                                     <option value="">Selecione a sub categoria</option>
@@ -77,7 +77,7 @@ $('.test.checkbox').checkbox();
 
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label>Preço de venda (R$)</label>
+                                                <label>Preço de venda (R$) <span class="obrigatorio" title="Obrigatório">*</span></label>
                                                 <input type="text"  name="descricao" class="form-control border-input" ng-model="vm.itemConsumo.precoVenda" value="" placeholder="Descrição" type="text"/>
                                             </div>
                                         </div>
@@ -85,7 +85,7 @@ $('.test.checkbox').checkbox();
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Lucro (%)</label>
-                                                <input type="text"  name="descricao" class="form-control border-input"  value="{{(vm.itemConsumo.precoVenda / vm.itemConsumo.custoTotal * 100).toFixed(2)}}" placeholder="Descrição" type="text"/>
+                                                <input type="text" disabled="disabled"  name="descricao" class="form-control border-input"  value="{{(vm.itemConsumo.precoVenda / vm.itemConsumo.custoTotal * 100).toFixed(2)}}" placeholder="Descrição" type="text"/>
                                             </div>
                                         </div>
 
@@ -139,9 +139,7 @@ $('.test.checkbox').checkbox();
                     
                                       <input type="button" ng-if="vm.itemConsumo._id" ng-click="vm.delete()" class="btn btn-fill btn-danger" value="Inativar" id="btexcluir" />
 
-                                      <input type="button" ng-click="vm.verificarCusto()" class="btn btn-fill btn-danger" value="teste" id="btteste" />
-
-                                      <a ui-sref="listaProduto" class="btn btn-fill btn-primary">Ir para lista</a>
+                                      <a ui-sref="listaProduto" class="btn btn-fill btn-primary">Voltar</a>
 
 
 
