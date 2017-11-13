@@ -112,11 +112,14 @@ class OrdemService {
 						let updateItemEstoque = yield ItemEstoque.update({_id:item.itemEstoque._id}, item.itemEstoque);
 						item.itemEstoque = item.itemEstoque._id;
 
-						if(ordem.rate.rate){
+						if(ordem.rate && ordem.rate.rate){
 							ordem.rate.rate = (ordem.rate.rate + item.rate.rate)/2;
 						}else{
 							ordem.rate = {};
-							ordem.rate.rate = item.rate.rate;
+							if(!item.rate || !item.rate.rate)
+								ordem.rate.rate = 1
+							else
+								ordem.rate.rate = item.rate.rate;
 							
 						}
 

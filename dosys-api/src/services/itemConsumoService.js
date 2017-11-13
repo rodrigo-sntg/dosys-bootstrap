@@ -12,6 +12,17 @@ const
 class ItemConsumoService {
 	
 	* insert(itemConsumo){
+			if(!itemConsumo.nome)
+				throw new Error("Nome Obrigatório!");
+			if(!itemConsumo.categoria || itemConsumo.categoria == "{\"_id\":null}")
+				throw new Error("Categoria Obrigatória!");
+			if(!itemConsumo.subCategoria || itemConsumo.subCategoria == "{\"_id\":null}")
+				throw new Error("Subcategoria Obrigatória!");
+			if(!itemConsumo.preco)
+				throw new Error("É obrigatório ao menos 1 insumo!");
+			if(!itemConsumo.listaItemEstoqueConsumo)
+				throw new Error("É obrigatório ao menos 1 insumo!");
+
 			console.log("entrou criação");
 			let listaItem = itemConsumo.listaItemEstoqueConsumo;
 			itemConsumo.listaItemEstoqueConsumo = new Array();

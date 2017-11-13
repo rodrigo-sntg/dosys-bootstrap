@@ -36,7 +36,7 @@ class ItemConsumoController{
 				that.categoryService.getByParent(obj._id).then(function (response){
 					obj.subCategorias = response.data;
 				}).catch(function(erro){
-					console.log(erro);
+					console.log(erro.data);
 				});
 			});
 		});
@@ -67,8 +67,8 @@ class ItemConsumoController{
 		this.itemConsumoService.insert(this.itemConsumo).then(function (response){
 			that.getAll();
 		}).catch(function(erro){
-			console.log(erro);
-			this.serverErrors = erro;
+			console.log(erro.message);
+			that.serverErrors = erro.data;
 		});
 	};
 

@@ -21,6 +21,7 @@
                 <input type="text" ng-required="true" class="form-control border-input" ng-model="vm.category._id" name="nome" placeholder="Nome"/>
               </div>
               <div class="col-md-12">
+                <label for="nome">Categoria Pai</label>
                 <select ng-model="vm.category.parent" class="form-control border-input" ng-options="cat._id as cat._id for cat in vm.parents">
                   <option value="">Selecione a categoria pai</option>
                 </select>

@@ -49,29 +49,32 @@ $('.test.checkbox').checkbox();
                                                 <input type="text" class="telefone form-control border-input" ng-required="true" ng-model="vm.fornecedor.telefone" name="telefone" value="" placeholder="(xx)00000-0000"  type="text"/>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                      <div class="form-group">
                                         <div class="col-md-6">
                                           <label>Vendedor</label>
                                           <input type="text" class="form-control border-input" ng-model="vm.fornecedor.vendedor" name="nome" placeholder="Nome"/>
                                         </div>
+                                    </div>
+                                    <div class="row">
+                                      <div class="form-group">
+                                        
                                         <div class="col-md-6">
                                           <label>Prazo de pagamento (dias)</label>
                                           <input type="number" class="form-control border-input" ng-model="vm.fornecedor.prazoPagamento"  name="rg" value="" placeholder="" type="text"/>
                                         </div>
+                                      </div>
+
+                                      <div class="col-md-6">
+                                          <div class="form-group">
+                                              <label>Rate</label>
+                                              <input-stars max="5" class="" allow-half ng-model="vm.fornecedor.rate"></input-stars>
+                                          </div>
                                       </div>
                                     </div>
 
                                     <div class="row">
 
 
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label>Rate</label>
-                                                <input-stars max="5" class="form-control " allow-half ng-model="vm.fornecedor.rate"></input-stars>
-                                            </div>
-                                        </div>
+                                        
 
                                         <div class="col-md-6">
                                             <div class="form-group">
